@@ -48,22 +48,15 @@ namespace AzmanSys
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-           
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (DialogResult.Yes == MessageBox.Show("Are you sure you want to delete this record ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+            if (mysqlConn.connOpen() == true)
             {
-                if (mysqlConn.connOpen() == true)
-                {
-                    mysqlConn.deleteCustomer(tbCustID.Text);
-                    dataGridView1.DataSource = mysqlConn.qry("SELECT * FROM `tblCustomer`").Tables[0];
-                }
-                mysqlConn.connClose();
+                mysqlConn.updateCustomer(tbCustID.Text, tbFName.Text, tbLName.Text, tbTel.Text);
+                dataGridView1.DataSource = mysqlConn.qry("SELECT * FROM `tblCustomer`").Tables[0];
             }
+            mysqlConn.connClose();
         }
 
+      
         private void btnMainMenu_Click(object sender, EventArgs e)
         {
             Close();
@@ -73,6 +66,11 @@ namespace AzmanSys
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void CustomersForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

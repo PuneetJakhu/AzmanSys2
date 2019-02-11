@@ -216,6 +216,7 @@
             this.Controls.Add(this.btnAdd);
             this.Name = "FlightsForm";
             this.Text = "Flights";
+            this.Load += new System.EventHandler(this.FlightsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

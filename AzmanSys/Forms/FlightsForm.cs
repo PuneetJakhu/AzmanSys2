@@ -33,6 +33,20 @@ namespace AzmanSys
                 dataGridView1.DataSource = mysqlConn.qry("SELECT * FROM `tblFlight`").Tables[0];
             }
             mysqlConn.connClose();
+
+            private void btnDelete_Click(object sender, EventArgs e)
+            {
+                if (DialogResult.Yes == MessageBox.Show("Are you sure you want to delete this record ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning))
+                {
+                    if (mysqlConn.connOpen() == true)
+                    {
+                        mysqlConn.deleteCustomer(tbCustID.Text);
+                        dataGridView1.DataSource = mysqlConn.qry("SELECT * FROM `tblCustomer`").Tables[0];
+                    }
+                    mysqlConn.connClose();
+                }
+            }
+
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -82,6 +96,11 @@ namespace AzmanSys
                 dataGridView1.DataSource = mysqlConn.qry("SELECT * FROM `tblFlight` where F_Departure_City='"+tbDepartureCity.Text+"' Or F_Arrival_City='"+tbArrivalCity.Text+"'").Tables[0];
             }
             mysqlConn.connClose();
+        }
+
+        private void FlightsForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
