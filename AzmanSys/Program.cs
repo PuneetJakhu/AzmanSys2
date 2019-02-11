@@ -18,7 +18,7 @@ namespace AzmanSys
             Application.SetCompatibleTextRenderingDefault(false);
             (new MainForm()).Show();
             Application.Run();
-         
+         //TEST
         }
     }
 }
